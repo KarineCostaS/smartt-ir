@@ -1,0 +1,19 @@
+{
+  "name": "smart-ir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "KarineCostaS"
+  },
+  "author": "Karine Costa",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.12.0",
+    "cypress-file-upload": "^5.0.8"
+  }
+}
