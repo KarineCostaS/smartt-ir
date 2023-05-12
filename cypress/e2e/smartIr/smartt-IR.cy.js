@@ -61,7 +61,7 @@ describe('SmartTir Login', () => {
   })
 
 
-    it.only('Exercer opção de Call Vendida', () => {
+    it('Exercer opção de Call Vendida', () => {
     cy.contains('Calculadora').click() //clique em calculadora
     cy.get('a.p-ripple[href="/calculadora-ir/ajuste-de-opcoes"]').click(); //clicar em ajuste de opções
     cy.get('button[aria-controls="popup_menu"]').eq(0).click(); //o teste clica na posição 0 zero do array de lista, sempre que mudar a posição no array é necessario mudar
