@@ -7,11 +7,10 @@ module.exports = defineConfig({
     },
   },
 
-  env: {
-    email: 'karine.jornalistace@gmail.com',
-    senha: 'Karine05*',
-    pdfFileName: "opcoes.pdf"
+ // env: {
+  //  email: 'karine.jornalistace@gmail.com',
+//  pdfFileName: "opcoes.pdf"
 
-  },
+//  },
 
 });

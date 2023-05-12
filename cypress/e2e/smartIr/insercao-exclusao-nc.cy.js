@@ -28,7 +28,7 @@ describe('SmartTir Login', () => {
 
   })
 
-it('Excluir Notas inseridas', () =>{
+    it.only('Excluir Notas inseridas', () =>{
     cy.contains('Calculadora').click() //clique em calculadora
     cy.get('a[href="/HistoricoNotas"]').click({ multiple: true }); //clique em Historico de Notas
     cy.get('button.p-button-danger2').eq(0).click(); //clicar nos 3 pontinhos para exclusão
@@ -39,11 +39,7 @@ it('Excluir Notas inseridas', () =>{
     cy.get('button.p-button-primary').click();//clicar em excluir no modal de confirmação
     cy.contains('Histórico apagado.').should('be.visible'); //confirmar toast de exclusão
 
-
-
-
-
-})
+  })
 
 
 
