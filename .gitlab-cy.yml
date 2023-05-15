@@ -1,0 +1,25 @@
+image: cypress/base:14.16.0
+
+variables:
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  CYPRESS_SCREENSHOTS_FOLDER: "$CI_PROJECT_DIR/artifacts/screenshots"
+  CYPRESS_VIDEOS_FOLDER: "$CI_PROJECT_DIR/artifacts/videos"
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - "node_modules/"
+    - "$CYPRESS_CACHE_FOLDER"
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - npm install
+    - npm run cy:run -- --spec "cypress/e2e/smartt-IR.cy.js"
+  artifacts:
+    paths:
+      - "$CYPRESS_SCREENSHOTS_FOLDER"
+      - "$CYPRESS_VIDEOS_FOLDER"
