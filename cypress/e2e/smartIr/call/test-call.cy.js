@@ -65,7 +65,7 @@ describe('SmartTir Login', () => {
     });
     
     it('Excluir Notas inseridas', () => {
-    cy.excluirNotaProcessada1() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem
+    cy.excluirNotaProcessada() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem
      
      });  
          });

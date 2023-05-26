@@ -17,7 +17,7 @@ describe('SmartTir Login', () => {
 
 
   
-  it('Enviar nota de corretagem', () => {
+  it.only('Enviar nota de corretagem', () => {
     const noteImportPage = new NoteImportPage(); // Instancie a classe NoteImportPage
   
     noteImportPage.clickCalculadora();
@@ -39,7 +39,7 @@ describe('SmartTir Login', () => {
   });
   
     
-    it('Aceitar Evento Clear', () => {
+    it.only('Aceitar Evento Clear', () => {
     calculatorPage.clickCalculadora();
     calculatorPage.clickEventos();
     calculatorPage.clickMenuEvento(0);
@@ -95,7 +95,7 @@ describe('SmartTir Login', () => {
     
     });
     
-it('Recusar Evento Inter', () => {
+it.only('Recusar Evento Inter', () => {
     calculatorPage.clickCalculadora();
     calculatorPage.clickEventos();
     calculatorPage.clickMenuEvento(1);

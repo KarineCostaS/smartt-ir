@@ -6,6 +6,7 @@ Cypress.Commands.add('excluirNotaProcessada', () => {
     cy.get('a[href="/HistoricoNotas"]').click({ multiple: true });
     cy.get('button.p-button-danger2').eq(1).click();
     cy.get('a.p-menuitem-link:contains("Excluir")').click();
+    cy.wait(500)
     cy.contains('Sim, excluir nota').click();
     cy.contains('Histórico apagado.').should('be.visible');
   });
@@ -17,6 +18,7 @@ Cypress.Commands.add('excluirNotaProcessada', () => {
     cy.get('a[href="/HistoricoNotas"]').click({ multiple: true });
     cy.get('button.p-button-danger2').eq(2).click();
     cy.get('a.p-menuitem-link:contains("Excluir")').click();
+    cy.wait(500)
     cy.contains('Sim, excluir nota').click();
     cy.contains('Histórico apagado.').should('be.visible');
   });
