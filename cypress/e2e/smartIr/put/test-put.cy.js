@@ -2,7 +2,7 @@ import LoginPage from './loginPage.js';
 import CalculatorPage from './calculatorPage.js';
 import NoteImportPage from './noteImportPage.js';
 
-describe('SmartTir Login', () => {
+describe('Smartt IR - Exercicio de PUT', () => {
   const loginPage = new LoginPage();
   const calculatorPage = new CalculatorPage();
   const noteImportPage = new NoteImportPage();
@@ -17,19 +17,20 @@ describe('SmartTir Login', () => {
 
 
   
-  it('Enviar nota de corretagem', () => {
+  it.only('Enviar nota de corretagem', () => {
     const noteImportPage = new NoteImportPage(); // Instancie a classe NoteImportPage
   
     noteImportPage.clickCalculadora();
     noteImportPage.clickImportacaoNotasLink();
     noteImportPage.uploadNoteFile('put.pdf');
     noteImportPage.clickEnviarButton();
-    cy.wait(500);
+    calculatorPage.esperarTempo();
+    noteImportPage.tratarExecaoCanvas();
     noteImportPage.clickHistoricoNotasButton();
   });
   
     
-    it('Exercer Opções de Put Comprada', () => {
+    it.only('Exercer Opções de Put Comprada', () => {
     calculatorPage.clickCalculadora();
     calculatorPage.clickAjusteDeOpcoesLink();
     calculatorPage.clickExercerOpcao(2);
@@ -42,7 +43,7 @@ describe('SmartTir Login', () => {
 
     });
     
-    it('Exercer opção de Put Vendida', () => {
+    it.only('Exercer opção de Put Vendida', () => {
     calculatorPage.clickCalculadora();
     calculatorPage.clickAjusteDeOpcoesLink();
     calculatorPage.clickExercerOpcao(4);
@@ -53,22 +54,13 @@ describe('SmartTir Login', () => {
     calculatorPage.typeQuantidade(Cypress.env('quantidadePutVendida'));
     calculatorPage.typePrecoMedio(Cypress.env('precoMedioPutVendida'));
     calculatorPage.clickAplicarButton();
-
-    Cypress.on('uncaught:exception', (err, runnable) => {
-      if (err.message.includes('Canvas is already in use')) {
-        // Faça o tratamento necessário, como destruir o canvas ou aguardar um tempo
-        // antes de realizar a próxima ação
-
-        // Retorne false para evitar que o Cypress encerre o teste automaticamente
-        return false;
-      }
-    });
+    noteImportPage.tratarExecaoCanvas();
     
     });
     
     it.only('Excluir Notas inseridas', () => {
     cy.excluirNotaProcessada() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem
-    cy.excluirNotaProcessada1()
+
     
      
      });  

@@ -22,3 +22,5 @@ Cypress.Commands.add('excluirNotaProcessada', () => {
     cy.contains('Sim, excluir nota').click();
     cy.contains('Histórico apagado.').should('be.visible');
   });
+
+ 

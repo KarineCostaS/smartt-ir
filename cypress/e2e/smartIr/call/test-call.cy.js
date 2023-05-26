@@ -2,7 +2,7 @@ import LoginPage from './loginPage.js';
 import CalculatorPage from './calculatorPage.js';
 import NoteImportPage from './noteimportPage.js';
 
-describe('SmartTir Login', () => {
+describe('Smartt IR - Cenários de Exercicio de Call', () => {
   const loginPage = new LoginPage();
   const calculatorPage = new CalculatorPage();
   const noteImportPage = new NoteImportPage();
@@ -23,9 +23,10 @@ describe('SmartTir Login', () => {
     noteImportPage.clickCalculadora();
     noteImportPage.clickImportacaoNotasLink();
     noteImportPage.uploadNoteFile('call.pdf');
-    cy.get('button.fontBotao2').click();
-    cy.wait(500);
-    cy.get('.fontBotaoCancelar').click();
+    noteImportPage.clickEnviarButton();
+    noteImportPage.tratarExecaoCanvas();
+    calculatorPage.esperarTempo();
+    noteImportPage.clickHistoricoNotasButton();
   });
   
     
@@ -34,7 +35,7 @@ describe('SmartTir Login', () => {
     calculatorPage.clickAjusteDeOpcoesLink();
     calculatorPage.clickExercerOpcao(1);
     calculatorPage.clickExercerOpcaoLink();
-    calculatorPage.typeAtivo('RADL3');
+    calculatorPage.typeAtivo('VALE3');
     calculatorPage.typeDataExercicio(Cypress.env('datadeExercicioCallComprada'));
     calculatorPage.typeQuantidade(Cypress.env('quantidadeCallComprada'));
     calculatorPage.typePrecoMedio(Cypress.env('precoMedioCallComprada'));
@@ -51,18 +52,9 @@ describe('SmartTir Login', () => {
     calculatorPage.typeQuantidade(Cypress.env('quantidadeCallVendida'));
     calculatorPage.typePrecoMedio(Cypress.env('precoMedioCallVendida'));
     calculatorPage.clickAplicarButton();
+    noteImportPage.tratarExecaoCanvas();
 
-    Cypress.on('uncaught:exception', (err, runnable) => {
-      if (err.message.includes('Canvas is already in use')) {
-        // Faça o tratamento necessário, como destruir o canvas ou aguardar um tempo
-        // antes de realizar a próxima ação
-
-        // Retorne false para evitar que o Cypress encerre o teste automaticamente
-        return false;
-      }
-    });
-    
-    });
+   });
     
     it('Excluir Notas inseridas', () => {
     cy.excluirNotaProcessada() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem

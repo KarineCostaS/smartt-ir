@@ -37,6 +37,18 @@ class NoteImportPage {
       cy.wait(500);
       this.clickHistoricoNotasButton();
     }
+
+    tratarExecaoCanvas(){
+      Cypress.on('uncaught:exception', (err, runnable) => {
+        if (err.message.includes('Canvas is already in use')) {
+          // Faça o tratamento necessário, como destruir o canvas ou aguardar um tempo
+          // antes de realizar a próxima ação
+  
+          // Retorne false para evitar que o Cypress encerre o teste automaticamente
+          return false;
+        }
+      });
+    }
   }
   
   export default NoteImportPage;

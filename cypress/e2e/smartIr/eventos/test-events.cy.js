@@ -2,7 +2,7 @@ import LoginPage from './loginPage.js';
 import CalculatorPage from './calculatorPage.js';
 import NoteImportPage from './noteImportPage.js';
 
-describe('SmartTir Login', () => {
+describe('Smartt IR - Aceite e Recusa de Eventos', () => {
   const loginPage = new LoginPage();
   const calculatorPage = new CalculatorPage();
   const noteImportPage = new NoteImportPage();
@@ -115,7 +115,7 @@ it.only('Recusar Evento Inter', () => {
 })
    it.only('Excluir Notas inseridas', () => {
      cy.excluirNotaProcessada()
-     cy.excluirNotaProcessada1() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem
+     cy.excluirNotaProcessada() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem
     
     });  
         });

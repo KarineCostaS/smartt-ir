@@ -36,6 +36,10 @@ class CalculatorPage {
     clickAplicarButton() {
       cy.contains('button.p-button', 'Aplicar').click();
     }
+
+    esperarTempo(){
+      cy.wait(500)
+    }
   }
   
   export default CalculatorPage;
