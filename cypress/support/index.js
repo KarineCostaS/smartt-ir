@@ -1,3 +1,5 @@
+import './commands';
+
 Cypress.on('uncaught:exception', (err, runnable) => {
     // ignore exceptions thrown by chart.js
     if (err.message.includes('Chart with ID')) {
