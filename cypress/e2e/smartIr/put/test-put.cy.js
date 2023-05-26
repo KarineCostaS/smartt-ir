@@ -1,6 +1,6 @@
 import LoginPage from './loginPage.js';
 import CalculatorPage from './calculatorPage.js';
-import NoteImportPage from './noteimportPage.js';
+import NoteImportPage from './noteImportPage.js';
 
 describe('SmartTir Login', () => {
   const loginPage = new LoginPage();
@@ -22,34 +22,36 @@ describe('SmartTir Login', () => {
   
     noteImportPage.clickCalculadora();
     noteImportPage.clickImportacaoNotasLink();
-    noteImportPage.uploadNoteFile('call.pdf');
-    cy.get('button.fontBotao2').click();
+    noteImportPage.uploadNoteFile('put.pdf');
+    noteImportPage.clickEnviarButton();
     cy.wait(500);
-    cy.get('.fontBotaoCancelar').click();
+    noteImportPage.clickHistoricoNotasButton();
   });
   
     
-    it('Exercer Opções de Call Comprada', () => {
+    it('Exercer Opções de Put Comprada', () => {
     calculatorPage.clickCalculadora();
     calculatorPage.clickAjusteDeOpcoesLink();
-    calculatorPage.clickExercerOpcao(1);
+    calculatorPage.clickExercerOpcao(2);
     calculatorPage.clickExercerOpcaoLink();
     calculatorPage.typeAtivo('RADL3');
-    calculatorPage.typeDataExercicio(Cypress.env('datadeExercicioCallComprada'));
-    calculatorPage.typeQuantidade(Cypress.env('quantidadeCallComprada'));
-    calculatorPage.typePrecoMedio(Cypress.env('precoMedioCallComprada'));
+    calculatorPage.typeDataExercicio(Cypress.env('datadeExercicioPutComprada'));
+    calculatorPage.typeQuantidade(Cypress.env('quantidadePutComprada'));
+    calculatorPage.typePrecoMedio(Cypress.env('precoMedioPutComprada'));
     calculatorPage.clickAplicarButton();
+
     });
     
-    it('Exercer opção de Call Vendida', () => {
+    it('Exercer opção de Put Vendida', () => {
     calculatorPage.clickCalculadora();
     calculatorPage.clickAjusteDeOpcoesLink();
-    calculatorPage.clickExercerOpcao(0);
+    calculatorPage.clickExercerOpcao(4);
     calculatorPage.clickExercerOpcaoLink();
-    calculatorPage.typeAtivo('VALE3');
-    calculatorPage.typeDataExercicio(Cypress.env('datadeExercicioCallVendida'));
-    calculatorPage.typeQuantidade(Cypress.env('quantidadeCallVendida'));
-    calculatorPage.typePrecoMedio(Cypress.env('precoMedioCallVendida'));
+    calculatorPage.esperarTempo();
+    calculatorPage.typeAtivo('RADL3');
+    calculatorPage.typeDataExercicio(Cypress.env('datadeExercicioPutVendida'));
+    calculatorPage.typeQuantidade(Cypress.env('quantidadePutVendida'));
+    calculatorPage.typePrecoMedio(Cypress.env('precoMedioPutVendida'));
     calculatorPage.clickAplicarButton();
 
     Cypress.on('uncaught:exception', (err, runnable) => {
@@ -64,8 +66,10 @@ describe('SmartTir Login', () => {
     
     });
     
-    it('Excluir Notas inseridas', () => {
+    it.only('Excluir Notas inseridas', () => {
     cy.excluirNotaProcessada() //adicionei uma função dentro do commands.js onde ele faz a exclusão das notas de corretagem
+    cy.excluirNotaProcessada1()
+    
      
      });  
          });
