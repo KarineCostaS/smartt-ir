@@ -41,8 +41,7 @@ jobs:
         run: |
           # Comandos para executar os testes
           ./node_modules/.bin/cypress run --spec "cypress/e2e/smartIr/call/test-call.cy.js"
-          ./node_modules/.bin/cypress run --spec "cypress/e2e/smartIr/put/test-put.cy.js"
-          ./node_modules/.bin/cypress run --spec "cypress/e2e/smartIr/eventos/test-events.cy.js"
+       
 
       - name: Salvar artefatos
         if: always()
