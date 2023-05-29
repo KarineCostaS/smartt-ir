@@ -25,7 +25,12 @@ jobs:
       - name: Configurar o ambiente
         run: |
           # Comandos para configurar o ambiente de build
-          npm install
+          npm ci
+
+      - name: Instalar Cypress
+        run: |
+          # Instalar o Cypress
+          npm install cypress
 
       - name: Conceder permissões de execução ao Cypress
         run: |
