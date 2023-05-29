@@ -1,0 +1,51 @@
+name: Fluxo de Trabalho de Build e Teste
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.16.0] # Defina a versão do Node.js desejada
+
+    env:
+      CYPRESS_CACHE_FOLDER: ${{ github.workspace }}/cache/Cypress
+      CI_NODE_TOTAL: 2 # Define o número de nós usados para paralelização
+      CI_NODE_INDEX: ${{ github.run_number }} # Define o índice do nó atual para paralelização
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+
+      - name: Configurar o ambiente
+        run: |
+          # Comandos para configurar o ambiente de build
+          npm install
+
+      - name: Executar testes
+        run: |
+          # Comandos para executar os testes
+          npm run cy:run -- --spec "cypress/e2e/smartIr/call/test-call.cy.js"
+          npm run cy:run -- --spec "cypress/e2e/smartIr/put/test-put.cy.js"
+          npm run cy:run -- --spec "cypress/e2e/smartIr/eventos/test-events.cy.js"
+          
+
+      - name: Salvar artefatos
+        if: always()
+        run: |
+          # Comandos para salvar os artefatos dos testes
+          mkdir -p ${{ github.workspace }}/artifacts
+          cp -r cypress/screenshots/ ${{ github.workspace }}/artifacts
+          cp -r cypress/videos/ ${{ github.workspace }}/artifacts
+
+      - name: Publicar artefatos
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test-Artifacts
+          path: ${{ github.workspace }}/artifacts
