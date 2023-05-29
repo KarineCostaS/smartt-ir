@@ -18,7 +18,7 @@ jobs:
       CI_NODE_TOTAL: 2 # Define o número de nós usados para paralelização
       CI_NODE_INDEX: ${{ github.run_number }} # Define o índice do nó atual
 
-    steps:
+     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
 
@@ -28,10 +28,9 @@ jobs:
           npm install
 
       - name: Conceder permissões de execução ao Cypress
-      run: |
-     # Concede permissões de execução ao comando cypress
-      chmod +x $(npm bin)/cypress
-
+        run: |
+          # Concede permissões de execução ao comando cypress
+          chmod +x ./node_modules/.bin/cypress
 
       - name: Executar testes
         run: |
