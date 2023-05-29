@@ -1,4 +1,4 @@
-name: Buid de Teste
+name: Build e Teste
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     env:
       CYPRESS_CACHE_FOLDER: ${{ github.workspace }}/cache/Cypress
       CI_NODE_TOTAL: 2 # Define o número de nós usados para paralelização
-      CI_NODE_INDEX: ${{ github.run_number }} # Define o índice do nó atual para paralelização
+      CI_NODE_INDEX: ${{ github.run_number }} # Define o índice do nó atual
 
     steps:
       - name: Checkout do repositório
@@ -27,13 +27,17 @@ jobs:
           # Comandos para configurar o ambiente de build
           npm install
 
+      - name: Conceder permissões de execução ao Cypress
+        run: |
+          # Concede permissões de execução ao comando cypress
+          $(npm bin)/cypress install --force
+
       - name: Executar testes
         run: |
           # Comandos para executar os testes
-          npm run cy:run -- --spec "cypress/e2e/smartIr/call/test-call.cy.js"
-          npm run cy:run -- --spec "cypress/e2e/smartIr/put/test-put.cy.js"
-          npm run cy:run -- --spec "cypress/e2e/smartIr/eventos/test-events.cy.js"
-          
+          $(npm bin)/cypress run --spec "cypress/e2e/smartIr/call/test-call.cy.js"
+          $(npm bin)/cypress run --spec "cypress/e2e/smartIr/put/test-put.cy.js"
+          $(npm bin)/cypress run --spec "cypress/e2e/smartIr/eventos/test-events.cy.js"
 
       - name: Salvar artefatos
         if: always()
