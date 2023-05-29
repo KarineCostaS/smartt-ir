@@ -28,9 +28,10 @@ jobs:
           npm install
 
       - name: Conceder permissões de execução ao Cypress
-        run: |
-          # Concede permissões de execução ao comando cypress
-          $(npm bin)/cypress install --force
+      run: |
+     # Concede permissões de execução ao comando cypress
+      chmod +x $(npm bin)/cypress
+
 
       - name: Executar testes
         run: |
