@@ -1,4 +1,4 @@
-name: Fluxo de Trabalho de Build e Teste
+name: Buid de Teste
 
 on:
   push:
